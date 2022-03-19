@@ -9,11 +9,18 @@ const userInput = document.getElementById("user-input");
 const submitButton = document.getElementById("submit-button")
 
 let index = 0;
-const answer = "HELLO"
-const answerArr = answer.split("");
+// const answer = "HELLO"
+// const answerArr = answer.split("");
+let answer = randomWord();
+console.log(answer)
 
+userInput.addEventListener("keyup", function(e) {
+    if(e.key === "Enter") {
+        addGuessToSquares(answer);
+    }
+})
 submitButton.addEventListener("click", function(){
-    addGuessToSquares();
+    addGuessToSquares(answer);
 })
 
 
@@ -47,14 +54,25 @@ function addNewElement(tag, location, text, className) {
     return newElement
 }
 
-function addGuessToSquares() {
+function addGuessToSquares(answer) {
     let uppercaseInput = userInput.value.toUpperCase();
     let eachLetter = uppercaseInput.split("");
+    console.log(userInput.value)
     for(const guessLetter of eachLetter) {
+        console.log(index)
         wordleLetters[index].textContent = guessLetter;
-        if(guessLetter.match(answerArr[index]))
+        if(guessLetter === answer[index%5])
             wordleLetters[index].style.backgroundColor = "green";
         index +=1;
     }
     userInput.value = "";
+}
+
+function randomWord() {
+    let index = Math.floor(Math.random() * words.length);
+    let splitWord = words[index].split("");
+    for(const index in splitWord) {
+        splitWord[index] = splitWord[index].toUpperCase();
+    }
+    return splitWord; 
 }
