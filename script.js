@@ -19,9 +19,9 @@ userInput.addEventListener("keyup", function(e) {
         addGuessToSquares(answer);
     }
 })
-submitButton.addEventListener("click", function(){
-    addGuessToSquares(answer);
-})
+// submitButton.addEventListener("click", function(){
+//     addGuessToSquares(answer);
+// })
 
 
 //set up wordle squares
@@ -69,8 +69,16 @@ function addGuessToSquares(answer) {
         wordleLetters[index].textContent = guessLetter;
         //checks to see if each letter from the users guess matches the answer and turns it green.
         //then resets the index for the answer
-        if(guessLetter === answer[index%5])
+        if(guessLetter === answer[index%5]){
             wordleLetters[index].style.backgroundColor = "green";
+        }
+        //checks to see if the letter matches anywhere in the word but is not in the right spot
+        //turns gold if true
+        if(answer.includes(guessLetter) && guessLetter !== answer[index%5]){
+            wordleLetters[index].style.backgroundColor = "gold";
+        }
+            
+        
         index +=1;
     }
     //resets input field
