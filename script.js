@@ -24,11 +24,13 @@ submitButton.addEventListener("click", function(){
 })
 
 
-
+//set up wordle squares
 for(let i = 0; i < 30; i++) {
     let newDiv = addNewElement("div", wordleContainer, "", "wordle-letter")
 }
 
+
+//set up each keyboard row
 for(let i = 0; i < 10; i++) {
     let firstLineKey = addNewElement("div", keyboardRow1, "", "keys")
 }
@@ -46,6 +48,8 @@ const wordleLetters = document.querySelectorAll(".wordle-letter")
 
 
 //functions
+
+//creates the element, adds content and appends
 function addNewElement(tag, location, text, className) {
     let newElement = document.createElement(tag);
     newElement.textContent = text;
@@ -54,25 +58,30 @@ function addNewElement(tag, location, text, className) {
     return newElement
 }
 
+//adds user guess into each square
 function addGuessToSquares(answer) {
+    //sets userinput to uppercase and splits to an array
     let uppercaseInput = userInput.value.toUpperCase();
     let eachLetter = uppercaseInput.split("");
-    console.log(userInput.value)
+    //loops through the users guess to add each letter to a square
     for(const guessLetter of eachLetter) {
         console.log(index)
         wordleLetters[index].textContent = guessLetter;
+        //checks to see if each letter from the users guess matches the answer and turns it green.
+        //then resets the index for the answer
         if(guessLetter === answer[index%5])
             wordleLetters[index].style.backgroundColor = "green";
         index +=1;
     }
+    //resets input field
     userInput.value = "";
 }
 
+
+//picks a random word converts to uppercase and splits into an array
 function randomWord() {
     let index = Math.floor(Math.random() * words.length);
-    let splitWord = words[index].split("");
-    for(const index in splitWord) {
-        splitWord[index] = splitWord[index].toUpperCase();
-    }
+    let splitWord = words[index].toUpperCase().split("");
+     
     return splitWord; 
 }
