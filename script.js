@@ -7,6 +7,7 @@ const keyboardRow2 = document.getElementById("keyboard-row-2");
 const keyboardRow3 = document.getElementById("keyboard-row-3");
 const userInput = document.getElementById("user-input");
 const submitButton = document.getElementById("submit-button")
+const winner = document.getElementById("winner")
 
 let index = 0;
 let correctCount = 0;
@@ -18,6 +19,7 @@ let gameOver = false;
 // const answerArr = answer.split("");
 let answer = randomWord();
 console.log(answer)
+
 
 userInput.addEventListener("keyup", function(e) {
     if(e.key === "Enter") {
@@ -82,10 +84,14 @@ function addGuessToSquares(answer) {
         if(answer.includes(guessLetter) && guessLetter !== answer[index%5]){
             wordleLetters[index].classList.add("wrongSpot");
         }
+
+        
+        // wordleLetters[index].classList.remove("grow")
             
         
         index +=1;
     }
+    
     //resets input field
     userInput.value = "";
     
@@ -119,7 +125,8 @@ function checkIfWinner(num1, num2) {
     if(correctCount === 5) {
         userInput.disabled = true;
         gameOver = true;
-        return console.log("You win!")
+        winner.style.visibility = "visible";
+        return console.log("You win!");
     } else {
         correctCount = 0;
     }
