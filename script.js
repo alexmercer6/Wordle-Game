@@ -9,6 +9,11 @@ const userInput = document.getElementById("user-input");
 const submitButton = document.getElementById("submit-button")
 
 let index = 0;
+let correctCount = 0;
+let rowStart = 0;
+let rowEnd = 5;
+let gameOver = false;
+
 // const answer = "HELLO"
 // const answerArr = answer.split("");
 let answer = randomWord();
@@ -17,6 +22,7 @@ console.log(answer)
 userInput.addEventListener("keyup", function(e) {
     if(e.key === "Enter") {
         addGuessToSquares(answer);
+        
     }
 })
 // submitButton.addEventListener("click", function(){
@@ -65,17 +71,16 @@ function addGuessToSquares(answer) {
     let eachLetter = uppercaseInput.split("");
     //loops through the users guess to add each letter to a square
     for(const guessLetter of eachLetter) {
-        console.log(index)
         wordleLetters[index].textContent = guessLetter;
         //checks to see if each letter from the users guess matches the answer and turns it green.
         //then resets the index for the answer
         if(guessLetter === answer[index%5]){
-            wordleLetters[index].style.backgroundColor = "green";
+            wordleLetters[index].classList.add("correctGuess");
         }
         //checks to see if the letter matches anywhere in the word but is not in the right spot
         //turns gold if true
         if(answer.includes(guessLetter) && guessLetter !== answer[index%5]){
-            wordleLetters[index].style.backgroundColor = "gold";
+            wordleLetters[index].classList.add("wrongSpot");
         }
             
         
@@ -83,6 +88,13 @@ function addGuessToSquares(answer) {
     }
     //resets input field
     userInput.value = "";
+    
+    
+    //ends game if winner
+    checkIfWinner(rowStart, rowEnd);
+    //increases by 5 to move to the next row of letters
+    rowStart += 5;
+    rowEnd += 5;
 }
 
 
@@ -92,4 +104,23 @@ function randomWord() {
     let splitWord = words[index].toUpperCase().split("");
      
     return splitWord; 
+}
+
+
+//checks to see if the current row has 5 "correctGuess" classes and ends this game if true
+function checkIfWinner(num1, num2) {
+    for(let i = num1; i < num2; i++) {
+        if(wordleLetters[i].classList.contains("correctGuess")) {
+            correctCount += 1;
+        }
+        
+    }
+
+    if(correctCount === 5) {
+        userInput.disabled = true;
+        gameOver = true;
+        return console.log("You win!")
+    } else {
+        correctCount = 0;
+    }
 }
