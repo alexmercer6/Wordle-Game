@@ -20,7 +20,7 @@ header {
     width: 80px;
     height: 80px;
     border: 1px solid grey;
-    transition-property: scale;
+    transition-property: all;
     transition-duration: 1s;
 }
 
@@ -30,7 +30,7 @@ header {
 
 .grow {
     
-    scale: 1.2;
+    transform: scale(1.2);
 }
 
 .wrongSpot {
@@ -55,6 +55,17 @@ header {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
+}
+
+#user-input {
+    font-size: 30px;
+    text-align: center;
+    background-color: grey;
+}
+
+#user-input:focus {
+    outline: none;
+    transform: scale(1.1);
 }
 
 #keyboard-container {
@@ -88,4 +99,5 @@ header {
     top: 200px;
     left: auto;
     font-size: 100px;
+    z-index: 100;
 }

@@ -11,6 +11,7 @@ const winner = document.getElementById("winner")
 
 let index = 0;
 let correctCount = 0;
+let guessCount = 0
 let rowStart = 0;
 let rowEnd = 5;
 let gameOver = false;
@@ -24,6 +25,12 @@ console.log(answer)
 userInput.addEventListener("keyup", function(e) {
     if(e.key === "Enter") {
         addGuessToSquares(answer);
+        guessCount += 1;
+        if(guessCount === 6) {
+            gameIsOver();
+            winner.textContent = "You Lose!" + "\n" + (answer.join(""));
+            
+        }
         
     }
 })
@@ -39,17 +46,17 @@ for(let i = 0; i < 30; i++) {
 
 
 //set up each keyboard row
-for(let i = 0; i < 10; i++) {
-    let firstLineKey = addNewElement("div", keyboardRow1, "", "keys")
-}
+// for(let i = 0; i < 10; i++) {
+//     let firstLineKey = addNewElement("div", keyboardRow1, "", "keys")
+// }
 
-for(let i = 0; i < 9; i++) {
-    let secondLineKey = addNewElement("div", keyboardRow2, "", "keys")
-}
+// for(let i = 0; i < 9; i++) {
+//     let secondLineKey = addNewElement("div", keyboardRow2, "", "keys")
+// }
 
-for(let i = 0; i < 9; i++) {
-    let thirdLineKey = addNewElement("div", keyboardRow3, "", "keys")
-}
+// for(let i = 0; i < 9; i++) {
+//     let thirdLineKey = addNewElement("div", keyboardRow3, "", "keys")
+// }
 
 const wordleLetters = document.querySelectorAll(".wordle-letter")
 
@@ -74,6 +81,16 @@ function addGuessToSquares(answer) {
     //loops through the users guess to add each letter to a square
     for(const guessLetter of eachLetter) {
         wordleLetters[index].textContent = guessLetter;
+        wordleLetters[index].classList.add("grow")
+        setTimeout(function(){
+            for(const item in wordleLetters) {
+                if(wordleLetters[item].classList.contains("grow")) {
+                    wordleLetters[item].classList.remove("grow");
+                }
+                
+            }
+            
+        }, 500)
         //checks to see if each letter from the users guess matches the answer and turns it green.
         //then resets the index for the answer
         if(guessLetter === answer[index%5]){
@@ -123,11 +140,15 @@ function checkIfWinner(num1, num2) {
     }
 
     if(correctCount === 5) {
-        userInput.disabled = true;
-        gameOver = true;
-        winner.style.visibility = "visible";
-        return console.log("You win!");
+        gameIsOver();
+        return
     } else {
         correctCount = 0;
     }
+}
+
+function gameIsOver() {
+    gameOver = true;
+    winner.style.visibility = "visible";
+    userInput.disabled = true;
 }
