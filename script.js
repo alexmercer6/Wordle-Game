@@ -7,7 +7,9 @@ const keyboardRow2 = document.getElementById("keyboard-row-2");
 const keyboardRow3 = document.getElementById("keyboard-row-3");
 const userInput = document.getElementById("user-input");
 const submitButton = document.getElementById("submit-button")
-const winner = document.getElementById("winner")
+const winner = document.getElementById("winner");
+const loser = document.getElementById("loser");
+const answerH1 = document.getElementById("answer-h1");
 
 let index = 0;
 let correctCount = 0;
@@ -23,12 +25,13 @@ console.log(answer)
 
 
 userInput.addEventListener("keyup", function(e) {
-    if(e.key === "Enter") {
+    if(e.key === "Enter" && userInput.value.length === 5) {
         addGuessToSquares(answer);
         guessCount += 1;
         if(guessCount === 6) {
-            gameIsOver();
-            winner.textContent = "You Lose!" + "\n" + (answer.join(""));
+            youLose();
+            
+
             
         }
         
@@ -140,15 +143,37 @@ function checkIfWinner(num1, num2) {
     }
 
     if(correctCount === 5) {
-        gameIsOver();
+        youWin();
         return
     } else {
         correctCount = 0;
     }
 }
 
+function youLose() {
+    gameIsOver()
+    gameOver = true;
+    userInput.disabled = true;
+    loser.style.transform = "translateX(0)";
+    answerH1.textContent = answer.join("");
+    answerH1.style.transform = "translateX(0)";
+    for(const square in wordleLetters){
+        wordleLetters[square].classList.add("shake-left");
+        setTimeout(function(){
+            wordleLetters[square].classList.remove("shake-left");
+            wordleLetters[square].classList.add("shake-right");
+        }, 500)
+    }
+}
+
 function gameIsOver() {
     gameOver = true;
-    winner.style.visibility = "visible";
     userInput.disabled = true;
+}
+
+function youWin() {
+    gameIsOver();
+    winner.style.transform = "translateX(0)";
+    answerH1.textContent = answer.join("");
+    answerH1.style.transform = "translateX(0)";
 }
