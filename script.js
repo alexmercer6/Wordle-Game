@@ -14,7 +14,8 @@ const answerH1 = document.getElementById("answer-h1");
 const settings = document.querySelector(".flex-5");
 const settingsContainer = document.getElementById("settings-container")
 const colorTheme = document.getElementById("color-theme");
-const startBtns = document.querySelectorAll(".start-btn")
+const startBtns = document.querySelectorAll(".start-btn");
+const heading = document.querySelector(".heading");
 
 let index = 0;
 let correctCount = 0;
@@ -34,6 +35,7 @@ startBtns[0].addEventListener("click", function() {
 startBtns[1].addEventListener("click", function(){
     startGame(animals);
     hideStartButtons();
+    animalThemed();
 })
 
 // startGame()
@@ -50,7 +52,8 @@ function startGame(arrayTheme) {
         let newDiv = addNewElement("div", wordleContainer, "", "wordle-letter")
     }
 
-    const wordleLetters = document.querySelectorAll(".wordle-letter")
+    const wordleLetters = [...document.querySelectorAll(".wordle-letter")]
+    
     settingsContainer.children[0].addEventListener("click", function() {
         settingsContainer.classList.toggle("show-settings")
     })
@@ -222,3 +225,15 @@ function hideStartButtons() {
         btns.style.display = "none";
     }
 }
+
+function animalThemed() {
+    document.body.classList.add("jungle-body")
+    heading.textContent = "Wordimal";
+    for(let title of wordleContainer.getElementsByTagName("h1")) {
+        console.log(title)
+        title.classList.add("jungle-end-banner");
+    }
+}
+
+//check number of letters
+//for(lett of word)

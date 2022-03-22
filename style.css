@@ -77,17 +77,17 @@ header {
     
 
 }
+#start-container {
+    display: flex;
+    margin: auto;
+}
 #start-container > button > p {
     font-size: 20px;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
 }
 .start-btn:hover {
     transform: scale(.9);
 }
+
 
 
 /* copied this switch css code from w3schools */
@@ -332,6 +332,24 @@ input:checked + .slider:before {
     #header-container {
         transform: scale(.8) !important;
     }
-  }
+}
+
+.jungle-body {
+    background-color: #85C88A;
+    height: 100%;
+    background-image: url(images/jungle-two.jpeg);
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jungle-header {
+    background-color: #85C88A;
+}
+
+.jungle-end-banner {
+    background-color: #85C88A !important;
+}
 
 
