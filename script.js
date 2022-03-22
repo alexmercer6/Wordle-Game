@@ -33,9 +33,12 @@ for(let i = 0; i < 30; i++) {
 }
 
 const wordleLetters = document.querySelectorAll(".wordle-letter")
-
+settingsContainer.children[0].addEventListener("click", function() {
+    settingsContainer.classList.toggle("show-settings")
+})
 colorTheme.addEventListener("click", function() {
     document.body.classList.toggle("light-mode");
+    document.body.children[0].children[0].classList.toggle("light-mode-header");
     for(const square of wordleLetters)
     square.classList.toggle("light-mode-wordle")
 })

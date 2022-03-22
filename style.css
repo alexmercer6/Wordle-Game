@@ -11,16 +11,18 @@ body {
 
 button {
     color: grey;
-    border: 1px solid grey;
+    border: none;
     width: 60px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0);;
 }
 header {
     border: 1px solid grey;
+    background-color: black;
 }
 
 
 .wordle-letter {
+    font-size: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,11 +34,15 @@ header {
 }
 
 .correctGuess {
-    background-color: green !important;
+    background-color: #85C88A !important;
 }
 .flex-1 {
     width: 39px;
     border: none;
+}
+
+.heading {
+    color: #ccc;
 }
 .flex-5 {
     width: 39px;
@@ -52,7 +58,7 @@ header {
 }
 
 .wrongSpot {
-    background-color: orange !important;
+    background-color: #f4bd33 !important;
 }
 
 .keys {
@@ -127,6 +133,7 @@ input:checked + .slider:before {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
+    transition-duration: 1s;
 }
 
 
@@ -140,7 +147,7 @@ input:checked + .slider:before {
     position: absolute;
     gap: 20px;
     top: 80px;
-    transform: translateY(2000px);
+    transform: translateY(-200%);
     left: 0;
     right: 0;
     margin-left: auto;
@@ -162,10 +169,15 @@ input:checked + .slider:before {
     margin-right: auto !important;
 }
 
+#settings-container > button {
+    font-size: 25px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
 #settings-container > h2 {
     margin-top: 20px;
     font-size: 50px;
-    grid-column: 1 / span 3;
+    grid-column: 1 / span 2;
     
 }
 #settings-container > p {
@@ -184,6 +196,7 @@ input:checked + .slider:before {
     font-size: 30px;
     text-align: center;
     background-color: white;
+    border: 1px solid grey;
 }
 
 #user-input:focus {
@@ -271,6 +284,11 @@ input:checked + .slider:before {
     color: #6FB2D2;
 }
 
+.light-mode-header {
+    background-color: white;
+    color: #6FB2D2;
+}
+
 
 @media only screen and (max-width: 600px) {
     .wordle-letter {
@@ -286,6 +304,9 @@ input:checked + .slider:before {
     }
     #winner, #loser, #answer-h1 {
         font-size: 60px;
+    }
+    #header-container {
+        transform: scale(.8) !important;
     }
   }
 
