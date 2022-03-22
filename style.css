@@ -58,7 +58,7 @@ header {
 }
 
 .wrongSpot {
-    background-color: #f4bd33 !important;
+    background-color: #f49d33 !important;
 }
 
 .keys {
@@ -66,6 +66,29 @@ header {
     height: 50px;
     border: 1px solid grey;
 }
+
+.start-btn {
+    font-size: 60px;
+    width: 450px;
+    height: 200px;
+    border: 1px solid grey;
+    margin-top: 300px;
+    transition-duration: .5s;
+    
+
+}
+#start-container > button > p {
+    font-size: 20px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}
+.start-btn:hover {
+    transform: scale(.9);
+}
+
 
 /* copied this switch css code from w3schools */
 .switch {
@@ -197,6 +220,7 @@ input:checked + .slider:before {
     text-align: center;
     background-color: white;
     border: 1px solid grey;
+    visibility: hidden;
 }
 
 #user-input:focus {
@@ -241,7 +265,7 @@ input:checked + .slider:before {
     left: 0;
     right: 0;
     top: 200px;
-    transform: translateX(-2000px);
+    transform: translateX(-3500px);
     font-size: 100px;
     z-index: 100;
     background-color: #ccc;
@@ -257,7 +281,7 @@ input:checked + .slider:before {
     left: 0;
     right: 0;
     top: 300px;
-    transform: translateX(2000px);
+    transform: translateX(3500px);
     font-size: 100px;
     z-index: 100;
     background-color: #ccc;
