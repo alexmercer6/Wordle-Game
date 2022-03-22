@@ -60,13 +60,27 @@ header {
 .wrongSpot {
     background-color: #f49d33 !important;
 }
-
-.keys {
+.backspace {
+    width: 80px !important;
+}
+.enter {
+    width: 80px !important;
+}
+.key {
+    border-radius: 10px;
     width: 50px;
     height: 50px;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: white;
     border: 1px solid grey;
 }
+.keyboard {
+    display: grid;
+    margin-top: 100px;
+    margin-bottom: 190px;
 
+}
 .start-btn {
     font-size: 60px;
     width: 450px;
@@ -228,7 +242,7 @@ input:checked + .slider:before {
     transform: scale(1.1);
 }
 
-#keyboard-container {
+/* #keyboard-container {
     display: flex;
     margin: 30px auto;
     justify-content: center;
@@ -241,7 +255,7 @@ input:checked + .slider:before {
     justify-content: center;
     flex-flow: row wrap;
     width: 600px;
-}
+} */
 
 
 #wordle-container {
@@ -316,9 +330,16 @@ input:checked + .slider:before {
 
 @media only screen and (max-width: 600px) {
     .wordle-letter {
-      width: 40px;
-      height: 40px;
+        width: 40px;
+        height: 40px;
       
+    }
+    .key {
+        width: 40px;
+        height: 40px;
+    }
+    .backspace, .enter {
+        width: 70px !important;
     }
     #wordle-container {
         width: 260px;
@@ -330,7 +351,7 @@ input:checked + .slider:before {
         font-size: 60px;
     }
     #header-container {
-        transform: scale(.8) !important;
+        transform: scale(.7) !important;
     }
 }
 
@@ -352,4 +373,9 @@ input:checked + .slider:before {
     background-color: #85C88A !important;
 }
 
+
+
+
+
+/* keyboard */
 

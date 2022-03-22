@@ -16,6 +16,7 @@ const settingsContainer = document.getElementById("settings-container")
 const colorTheme = document.getElementById("color-theme");
 const startBtns = document.querySelectorAll(".start-btn");
 const heading = document.querySelector(".heading");
+const keyboard = document.querySelector(".keyboard");
 
 let index = 0;
 let correctCount = 0;
@@ -25,6 +26,8 @@ let rowEnd = 5;
 let gameOver = false;
 
 settings.style.visibility = "hidden";
+keyboard.style.visibility = "hidden";
+
 // const answer = "HELLO"
 // const answerArr = answer.split("");
 startBtns[0].addEventListener("click", function() {
@@ -41,7 +44,7 @@ startBtns[1].addEventListener("click", function(){
 // startGame()
 
 function startGame(arrayTheme) {
-
+    keyboard.style.visibility = "visible";
     userInput.style.visibility = "visible";
     settings.style.visibility = "visible";
     let answer = randomWord();
@@ -237,3 +240,6 @@ function animalThemed() {
 
 //check number of letters
 //for(lett of word)
+
+//keyboard
+
