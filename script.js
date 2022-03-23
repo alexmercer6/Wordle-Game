@@ -6,7 +6,7 @@ const wordleContainer = document.getElementById("wordle-container");
 const keyboardRow1 = document.getElementById("keyboard-row-1");
 const keyboardRow2 = document.getElementById("keyboard-row-2");
 const keyboardRow3 = document.getElementById("keyboard-row-3");
-const userInput = document.getElementById("user-input");
+let userInput = document.getElementById("user-input");
 const submitButton = document.getElementById("submit-button")
 const winner = document.getElementById("winner");
 const loser = document.getElementById("loser");
@@ -17,6 +17,7 @@ const colorTheme = document.getElementById("color-theme");
 const startBtns = document.querySelectorAll(".start-btn");
 const heading = document.querySelector(".heading");
 const keyboard = document.querySelector(".keyboard");
+const keys = document.querySelectorAll(".key");
 
 let index = 0;
 let correctCount = 0;
@@ -24,6 +25,7 @@ let guessCount = 0
 let rowStart = 0;
 let rowEnd = 5;
 let gameOver = false;
+let testArray = [];
 
 settings.style.visibility = "hidden";
 keyboard.style.visibility = "hidden";
@@ -41,6 +43,8 @@ startBtns[1].addEventListener("click", function(){
     animalThemed();
 })
 
+
+
 // startGame()
 
 function startGame(arrayTheme) {
@@ -49,62 +53,64 @@ function startGame(arrayTheme) {
     settings.style.visibility = "visible";
     let answer = randomWord();
     console.log(answer)
+    testArray = resetTestArray();
+    console.log(testArray)
+   
 
     //set up wordle squares
     for(let i = 0; i < 30; i++) {
         let newDiv = addNewElement("div", wordleContainer, "", "wordle-letter")
     }
 
+    for(const eachKey of keys) {
+        
+        eachKey.addEventListener("click", function(e){
+            
+            
+            if(e.target.textContent === "Enter" && userInput.value.length !== 5) {
+                userInput.value = userInput.value + "";
+            } else if(e.target.textContent === "Enter" && userInput.value.length === 5) {
+                userInput.value = userInput.value + "";
+                submitGuess();
+            } else if(e.target.textContent === "Backspace") {
+                console.log("back")
+                userInput.value = userInput.value.slice(0, -1);
+            } else if(userInput.value.length === 5) {
+                userInput.value = userInput.value + "";
+            } else {
+                userInput.value += eachKey.textContent;
+            }
+            
+        })
+    }
+
     const wordleLetters = [...document.querySelectorAll(".wordle-letter")]
     
+    //closes the settings box with the "x" in the corner
     settingsContainer.children[0].addEventListener("click", function() {
         settingsContainer.classList.toggle("show-settings")
     })
+
+    //toggles between light and dark mode
     colorTheme.addEventListener("click", function() {
         document.body.classList.toggle("light-mode");
         document.body.children[0].children[0].classList.toggle("light-mode-header");
         for(const square of wordleLetters)
         square.classList.toggle("light-mode-wordle")
     })
+
+    //shows settings box
     settings.addEventListener("click", function(){
         settingsContainer.classList.toggle("show-settings")
     })
+
+    //submits users guess on "enter" if there is a 5 letter word
     userInput.addEventListener("keyup", function(e) {
         if(e.key === "Enter" && userInput.value.length === 5) {
-            addGuessToSquares(answer);
-            guessCount += 1;
-            if(guessCount === 6 && correctCount !== 5) {
-                youLose();
-                
-
-                
-            }
+            submitGuess();
             
         }
     })
-    // submitButton.addEventListener("click", function(){
-    //     addGuessToSquares(answer);
-    // })
-
-
-
-
-    //set up each keyboard row
-    // for(let i = 0; i < 10; i++) {
-    //     let firstLineKey = addNewElement("div", keyboardRow1, "", "keys")
-    // }
-
-    // for(let i = 0; i < 9; i++) {
-    //     let secondLineKey = addNewElement("div", keyboardRow2, "", "keys")
-    // }
-
-    // for(let i = 0; i < 9; i++) {
-    //     let thirdLineKey = addNewElement("div", keyboardRow3, "", "keys")
-    // }
-
-
-
-
 
     //functions
 
@@ -135,23 +141,25 @@ function startGame(arrayTheme) {
                 }
                 
             }, 500)
-            //checks to see if each letter from the users guess matches the answer and turns it green.
-            //then resets the index for the answer
-            if(guessLetter === answer[index%5]){
-                wordleLetters[index].classList.add("correctGuess");
-            }
-            //checks to see if the letter matches anywhere in the word but is not in the right spot
-            //turns gold if true
-            if(answer.includes(guessLetter) && guessLetter !== answer[index%5]){
-                wordleLetters[index].classList.add("wrongSpot");
-            }
 
-            
-            // wordleLetters[index].classList.remove("grow")
+
+            //checks to see if each letter from the users guess matches the answer and turns it green.
+        //then resets the index for the answer
+        if(guessLetter === answer[index%5]){
+            wordleLetters[index].classList.add("correctGuess");
+        }
+        //checks to see if the letter matches anywhere in the word but is not in the right spot
+        //turns gold if true
+        if(answer.includes(guessLetter) && guessLetter !== answer[index%5]){
+            wordleLetters[index].classList.add("wrongSpot");
+        }
+           
                 
             
             index +=1;
         }
+        console.log(testArray)
+        testArray = resetTestArray();
         
         //resets input field
         userInput.value = "";
@@ -164,7 +172,16 @@ function startGame(arrayTheme) {
         rowEnd += 5;
     }
 
+    function submitGuess(){
+        addGuessToSquares(answer);
+            guessCount += 1;
+            if(guessCount === 6 && correctCount !== 5) {
+                youLose();
+                
 
+                
+            }
+    }
     //picks a random word converts to uppercase and splits into an array
     function randomWord() {
         let index = Math.floor(Math.random() * arrayTheme.length);
@@ -191,10 +208,9 @@ function startGame(arrayTheme) {
         }
     }
 
+    //ends the game and brings up a you lose message
     function youLose() {
         gameIsOver()
-        gameOver = true;
-        userInput.disabled = true;
         loser.style.transform = "translateX(0)";
         answerH1.textContent = answer.join("");
         answerH1.style.transform = "translateX(0)";
@@ -212,11 +228,23 @@ function startGame(arrayTheme) {
         userInput.disabled = true;
     }
 
+    //ends the game and brings up a you win message
     function youWin() {
         gameIsOver();
         winner.style.transform = "translateX(0)";
         answerH1.textContent = answer.join("");
         answerH1.style.transform = "translateX(0)";
+    }
+
+
+    function resetTestArray() {
+        testArray = [];
+        for(const element of answer) {
+            testArray.push(element)
+            
+        }
+        return testArray
+
     }
 
 
@@ -237,6 +265,7 @@ function animalThemed() {
         title.classList.add("jungle-end-banner");
     }
 }
+
 
 //check number of letters
 //for(lett of word)

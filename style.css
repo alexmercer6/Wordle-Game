@@ -77,8 +77,8 @@ header {
 }
 .keyboard {
     display: grid;
-    margin-top: 100px;
-    margin-bottom: 190px;
+    margin-top: 50px;
+    margin-bottom: 100px;
 
 }
 .start-btn {
