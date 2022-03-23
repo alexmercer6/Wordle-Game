@@ -30,8 +30,7 @@ let testArray = [];
 settings.style.visibility = "hidden";
 keyboard.style.visibility = "hidden";
 
-// const answer = "HELLO"
-// const answerArr = answer.split("");
+
 startBtns[0].addEventListener("click", function() {
     startGame(words);
     hideStartButtons();

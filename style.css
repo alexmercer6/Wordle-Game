@@ -91,6 +91,7 @@ header {
     
 
 }
+
 #start-container {
     display: flex;
     margin: auto;
@@ -210,6 +211,19 @@ input:checked + .slider:before {
     font-size: 25px;
     background-color: rgba(0, 0, 0, 0);
     border: none;
+}
+
+.game-type {
+    color: white;
+    font-size: 20px;
+    grid-column: 1 / span 2;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
+}
+
+.game-type:hover {
+    text-decoration: underline;
 }
 #settings-container > h2 {
     margin-top: 20px;
