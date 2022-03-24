@@ -111,6 +111,7 @@ function startGame(arrayTheme) {
         }
     })
 
+
     //functions
 
     //creates the element, adds content and appends
@@ -152,7 +153,7 @@ function startGame(arrayTheme) {
         if(answer.includes(guessLetter) && guessLetter !== answer[index%5]){
             wordleLetters[index].classList.add("wrongSpot");
         }
-           
+            
                 
             
             index +=1;
@@ -170,6 +171,7 @@ function startGame(arrayTheme) {
         rowStart += 5;
         rowEnd += 5;
     }
+
 
     function submitGuess(){
         addGuessToSquares(answer);
@@ -245,10 +247,11 @@ function startGame(arrayTheme) {
         return testArray
 
     }
-
-
-
 }
+
+
+
+
 
 function hideStartButtons() {
     for(const btns of startBtns) {
@@ -270,4 +273,3 @@ function animalThemed() {
 //for(lett of word)
 
 //keyboard
-
