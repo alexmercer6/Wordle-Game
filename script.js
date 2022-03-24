@@ -176,18 +176,30 @@ function addGuessToSquares(answer) {
         //then resets the index for the answer
         if(guessLetter === answer[index%5]){
             wordleLetters[index].classList.add("correctGuess");
-            // testArray.splice(index%5, 1, " ");
         }
-        //checks to see if the letter matches anywhere in the word but is not in the right spot
+
+        //removes letter from test array if in right spot
+        for(const guessLetter in eachLetter) {
+            console.log(guessLetter)
+            if(eachLetter[guessLetter] === answer[guessLetter]) {
+                testArray.splice(guessLetter, 1, " ");
+            }
+        }
+
+        //checks to see if the letter matches anywhere in the test array (matching letters have been removed) but is not in the right spot
         //turns gold if true
-        if(answer.includes(guessLetter) && guessLetter !== answer[index%5]){
+        if(testArray.includes(guessLetter) ){
+
+            let indexGuessLetter = testArray.indexOf(guessLetter);
+            
             wordleLetters[index].classList.add("wrongSpot");
+            testArray.splice(indexGuessLetter, 1, " ")
         }
-            
-                
-            
+        
+        //counter to move to the next div
         index +=1;
     }
+    testArray = resetTestArray(answer);
         
     //resets input field
     userInput.value = "";
