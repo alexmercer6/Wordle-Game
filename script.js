@@ -12,12 +12,21 @@ const winner = document.getElementById("winner");
 const loser = document.getElementById("loser");
 const answerH1 = document.getElementById("answer-h1");
 const settings = document.querySelector(".flex-5");
-const settingsContainer = document.getElementById("settings-container")
+const settingsContainer = document.getElementById("settings-container");
+const startContainer = document.getElementById("start-container");
 const colorTheme = document.getElementById("color-theme");
 const startBtns = document.querySelectorAll(".start-btn");
 const heading = document.querySelector(".heading");
 const keyboard = document.querySelector(".keyboard");
 const keys = document.querySelectorAll(".key");
+const difficulty = document.querySelectorAll(".difficulty");
+
+let easy = 40;
+let easyGuesses = 8;
+let normal = 30;
+let normalGuesses = 6;
+let hard = 20;
+let hardGuesses = 4;
 
 let index = 0;
 let correctCount = 0;
@@ -26,38 +35,58 @@ let rowStart = 0;
 let rowEnd = 5;
 let gameOver = false;
 let testArray = [];
+let theme = "";
+
 
 settings.style.visibility = "hidden";
 keyboard.style.visibility = "hidden";
 
 
 startBtns[0].addEventListener("click", function() {
-    startGame(words);
+    // startGame(words);
+    theme = words
     hideStartButtons();
+    toggleDifficulty();
+    setThreeColumns();
     
 });
 startBtns[1].addEventListener("click", function(){
-    startGame(animals);
+    // startGame(animals);
+    theme = animals
+    toggleDifficulty();
     hideStartButtons();
     animalThemed();
+    setThreeColumns();
+})
+
+difficulty[0].addEventListener("click", function(){
+    toggleDifficulty();
+    startGame(theme, easy, easyGuesses);
+})
+difficulty[1].addEventListener("click", function(){
+    toggleDifficulty();
+    startGame(theme, normal, normalGuesses);
+})
+difficulty[2].addEventListener("click", function(){
+    toggleDifficulty();
+    startGame(theme, hard, hardGuesses);
 })
 
 
 
 // startGame()
 
-function startGame(arrayTheme) {
+function startGame(arrayTheme, gameLevel, numberIncorrect) {
     keyboard.style.visibility = "visible";
     userInput.style.visibility = "visible";
     settings.style.visibility = "visible";
     let answer = randomWord();
     console.log(answer)
-    testArray = resetTestArray();
-    console.log(testArray)
+    
    
 
     //set up wordle squares
-    for(let i = 0; i < 30; i++) {
+    for(let i = 0; i < gameLevel; i++) {
         let newDiv = addNewElement("div", wordleContainer, "", "wordle-letter")
     }
 
@@ -68,14 +97,17 @@ function startGame(arrayTheme) {
             
             if(e.target.textContent === "Enter" && userInput.value.length !== 5) {
                 userInput.value = userInput.value + "";
+
             } else if(e.target.textContent === "Enter" && userInput.value.length === 5) {
                 userInput.value = userInput.value + "";
                 submitGuess();
+
             } else if(e.target.textContent === "Backspace") {
-                console.log("back")
                 userInput.value = userInput.value.slice(0, -1);
+
             } else if(userInput.value.length === 5) {
                 userInput.value = userInput.value + "";
+
             } else {
                 userInput.value += eachKey.textContent;
             }
@@ -144,39 +176,37 @@ function startGame(arrayTheme) {
 
 
             //checks to see if each letter from the users guess matches the answer and turns it green.
-        //then resets the index for the answer
-        if(guessLetter === answer[index%5]){
-            wordleLetters[index].classList.add("correctGuess");
-        }
-        //checks to see if the letter matches anywhere in the word but is not in the right spot
-        //turns gold if true
-        if(answer.includes(guessLetter) && guessLetter !== answer[index%5]){
-            wordleLetters[index].classList.add("wrongSpot");
-        }
-            
+            //then resets the index for the answer
+            if(guessLetter === answer[index%5]){
+                wordleLetters[index].classList.add("correctGuess");
+            }
+            //checks to see if the letter matches anywhere in the word but is not in the right spot
+            //turns gold if true
+            if(answer.includes(guessLetter) && guessLetter !== answer[index%5]){
+                wordleLetters[index].classList.add("wrongSpot");
+            }
                 
+                    
+                
+                index +=1;
+            }
             
-            index +=1;
+            //resets input field
+            userInput.value = "";
+            
+            
+            //ends game if winner
+            checkIfWinner(rowStart, rowEnd);
+            //increases by 5 to move to the next row of letters
+            rowStart += 5;
+            rowEnd += 5;
         }
-        console.log(testArray)
-        testArray = resetTestArray();
-        
-        //resets input field
-        userInput.value = "";
-        
-        
-        //ends game if winner
-        checkIfWinner(rowStart, rowEnd);
-        //increases by 5 to move to the next row of letters
-        rowStart += 5;
-        rowEnd += 5;
-    }
 
 
     function submitGuess(){
         addGuessToSquares(answer);
             guessCount += 1;
-            if(guessCount === 6 && correctCount !== 5) {
+            if(guessCount === numberIncorrect && correctCount !== 5) {
                 youLose();
                 
 
@@ -266,6 +296,17 @@ function animalThemed() {
         console.log(title)
         title.classList.add("jungle-end-banner");
     }
+}
+
+function toggleDifficulty(){
+    for(const eachButton of difficulty){
+        eachButton.classList.toggle("difficulty-show");
+    }
+    
+}
+
+function setThreeColumns() {
+    startContainer.classList.toggle("three-columns");
 }
 
 

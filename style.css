@@ -78,10 +78,14 @@ header {
 .keyboard {
     display: grid;
     margin-top: 50px;
-    margin-bottom: 100px;
+    margin-bottom: 300px;
 
 }
 .start-btn {
+    justify-self: center;
+}
+.start-btn, .difficulty {
+    
     font-size: 60px;
     width: 450px;
     height: 200px;
@@ -91,15 +95,26 @@ header {
     
 
 }
+.difficulty {
+    display: none;
+}
+
+.difficulty-show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 #start-container {
-    display: flex;
+    display: grid;
+    justify-items: stretch;
+    grid-template-columns: 1fr 1fr;
     margin: auto;
 }
 #start-container > button > p {
     font-size: 20px;
 }
-.start-btn:hover {
+.start-btn:hover, .difficulty:hover {
     transform: scale(.9);
 }
 
@@ -293,7 +308,7 @@ input:checked + .slider:before {
     left: 0;
     right: 0;
     top: 200px;
-    transform: translateX(-3500px);
+    transform: translateX(-4000px);
     font-size: 100px;
     z-index: 100;
     background-color: #ccc;
@@ -309,7 +324,7 @@ input:checked + .slider:before {
     left: 0;
     right: 0;
     top: 300px;
-    transform: translateX(3500px);
+    transform: translateX(4000px);
     font-size: 100px;
     z-index: 100;
     background-color: #ccc;
@@ -341,6 +356,38 @@ input:checked + .slider:before {
     color: #6FB2D2;
 }
 
+@media only screen and (max-width: 1500px) {
+    /* .difficulty, .start-btn {
+        font-size: 40px;
+        width: 350px;
+        height: 150px; */
+        .difficulty, .start-btn {
+            font-size: 30px;
+            width: 250px;
+            height: 100px;
+        }
+    
+}
+
+@media only screen and (max-width: 1200px) {
+    .difficulty, .start-btn {
+        font-size: 30px;
+        width: 250px;
+        height: 100px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    #start-container {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 100px;
+        
+    }
+    .difficulty, .start-btn {
+        margin-bottom: 0;
+    }
+}
+
 
 @media only screen and (max-width: 600px) {
     .wordle-letter {
@@ -367,6 +414,7 @@ input:checked + .slider:before {
     #header-container {
         transform: scale(.7) !important;
     }
+    
 }
 
 .jungle-body {
@@ -385,6 +433,10 @@ input:checked + .slider:before {
 
 .jungle-end-banner {
     background-color: #85C88A !important;
+}
+
+.three-columns {
+    grid-template-columns: 1fr 1fr 1fr !important;
 }
 
 
