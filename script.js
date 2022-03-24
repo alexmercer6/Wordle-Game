@@ -180,7 +180,6 @@ function addGuessToSquares(answer) {
 
         //removes letter from test array if in right spot
         for(const guessLetter in eachLetter) {
-            console.log(guessLetter)
             if(eachLetter[guessLetter] === answer[guessLetter]) {
                 testArray.splice(guessLetter, 1, " ");
             }
