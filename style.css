@@ -9,6 +9,14 @@ body {
     text-align: center;
 }
 
+a {
+    font-family: 'Roboto', sans-serif;
+}
+
+#settings-container > h2, #settings-container > p {
+    font-family: 'Roboto', sans-serif;
+}
+
 button {
     color: grey;
     border: none;
@@ -16,6 +24,7 @@ button {
     background-color: rgba(0, 0, 0, 0);;
 }
 header {
+    font-family: 'Roboto', sans-serif;
     border: 1px solid grey;
     background-color: black;
 }
@@ -58,7 +67,7 @@ header {
 }
 
 .wrongSpot {
-    background-color: #f49d33 !important;
+    background-color: #f49d33;
 }
 .backspace {
     width: 80px !important;
@@ -174,6 +183,9 @@ input:checked + .slider:before {
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
+
+/* end of copy */
+
 
 #container {
     margin: auto;
