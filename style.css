@@ -209,6 +209,7 @@ input:checked + .slider:before {
     transition-duration: 1s;
 }
 
+
 #rules-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -499,6 +500,14 @@ input:checked + .slider:before {
 
 .three-columns {
     grid-template-columns: 1fr 1fr 1fr !important;
+}
+
+.green {
+    color: #85C88A;
+}
+
+.orange {
+    color: #f49d33;
 }
 
 

@@ -6,6 +6,7 @@ General Assembly Wordle Project
 - Choose level difficulty
 - Try and guess the five letter word before you run out of guesses.
 - You can navigate between game types in the settings menu.
+- Rules are in the top left corner.
 
 ## Technologies
 - Vanilla Javascript
