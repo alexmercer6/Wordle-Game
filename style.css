@@ -7,10 +7,17 @@ body {
     background-color: black;
     color: white;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
 }
 
 a {
     font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 20px;
+    grid-column: 1 / span 2;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: none;
 }
 
 #settings-container > h2, #settings-container > p {
@@ -46,6 +53,7 @@ header {
     background-color: #85C88A !important;
 }
 .flex-1 {
+    color: #ccc;
     width: 39px;
     border: none;
 }
@@ -201,6 +209,48 @@ input:checked + .slider:before {
     transition-duration: 1s;
 }
 
+#rules-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px;
+    justify-content: center;
+    overflow-wrap: break-word;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 80px;
+    gap: 20px;
+    transform: translateY(-200%);
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: 580px;
+    background-color: #ccc;
+    transition-property: all;
+    transition-duration: 1s;
+    z-index: 100;
+    border: 2px solid white;
+    /* padding: 30px; */
+    
+}
+
+#rules-container > button {
+    font-size: 25px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+#rules-container > h1 {
+    font-size: 60px;
+}
+#rules-container > ul > li {
+    margin-bottom: 20px;
+    width: 80%;
+    margin-left: 40px;
+    /* padding-left: ; */
+
+    /* padding-right: 10px; */
+}
 
 #settings-container {
     /* visibility: hidden; */

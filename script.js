@@ -14,6 +14,8 @@ const answerH1 = document.getElementById("answer-h1");
 const settings = document.querySelector(".flex-5");
 const settingsContainer = document.getElementById("settings-container");
 const startContainer = document.getElementById("start-container");
+const rules = document.getElementById("rules-container");
+const rulesBtn = document.querySelector(".flex-1")
 const colorTheme = document.getElementById("color-theme");
 const startBtns = document.querySelectorAll(".start-btn");
 const heading = document.querySelector(".heading");
@@ -37,7 +39,7 @@ let gameOver = false;
 let testArray = [];
 let theme = "";
 
-
+rulesBtn.style.visibility = "hidden";
 settings.style.visibility = "hidden";
 keyboard.style.visibility = "hidden";
 
@@ -78,6 +80,7 @@ difficulty[2].addEventListener("click", function(){
 
 function startGame(arrayTheme, gameLevel, numberIncorrect) {
     //shows the game ui
+    rulesBtn.style.visibility = "visible";
     keyboard.style.visibility = "visible";
     userInput.style.visibility = "visible";
     settings.style.visibility = "visible";
@@ -156,6 +159,14 @@ function startGame(arrayTheme, gameLevel, numberIncorrect) {
             
         }
     });
+
+    rulesBtn.addEventListener("click", function() {
+        rules.classList.toggle("show-settings");
+    })
+
+    rules.children[0].addEventListener("click", function() {
+        rules.classList.toggle("show-settings")
+    })
 
 }
 
