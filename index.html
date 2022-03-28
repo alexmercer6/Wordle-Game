@@ -14,9 +14,9 @@
     <div id="container">
         <header id="header-container">
                 <button class="nav-button flex-1">Rules</button>
-                <!-- <button class="nav-button flex-2">How To</button> -->
+                <button class="nav-button flex-2"></button>
                 <h1 class="heading flex-3">Wordle</h1>
-                <!-- <button class="nav-button flex-4">Statistics</button> -->
+                <button class="nav-button flex-4">Statistics</button>
                 <button class="nav-button flex-5" src="images/settings.png"></button>
         </header>
         <div id="start-container">
@@ -33,7 +33,7 @@
             <h1 id="answer-h1"></h1>
         </div>
         <div>
-            <input id="user-input" style="text-transform: uppercase;" maxlength="5" type="text">
+            <input id="user-input" style="text-transform: uppercase;" maxlength="5" type="text" autofocus>
         </div>
         <!-- <div id="keyboard-container">
             <div id="keyboard-row-1"></div>
@@ -51,6 +51,19 @@
             <li>If you have a letter in the wrong position but it is in the word, it will turns <span class="orange">orange</span> </li>
 
         </ul>
+    </div>
+    <div id="statistics-container">
+        <button>X</button>
+        <h2 class="stats-heading">Statistics</h2>
+        <h2 class="played">Played:</h2>
+        <p class="games-played"></p>
+        <h2 class="stats-won">Games Won:</h2>
+        <h3>Easy</h3>
+        <h3>Normal</h3>
+        <h3>Hard</h3>
+        <p class="gamesWon easy-level"></p>
+        <p class="gamesWon normal-level"></p>
+        <p class="gamesWon hard-level"></p>
     </div>
     <div id="settings-container">
         <button>X</button>

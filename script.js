@@ -15,14 +15,19 @@ const settings = document.querySelector(".flex-5");
 const settingsContainer = document.getElementById("settings-container");
 const startContainer = document.getElementById("start-container");
 const rules = document.getElementById("rules-container");
+const statisticsContainer = document.getElementById("statistics-container");
 const rulesBtn = document.querySelector(".flex-1")
+const statisticBtn = document.querySelector(".flex-4");
 const colorTheme = document.getElementById("color-theme");
 const startBtns = document.querySelectorAll(".start-btn");
 const heading = document.querySelector(".heading");
 const keyboard = document.querySelector(".keyboard");
 const keys = document.querySelectorAll(".key");
 const difficulty = document.querySelectorAll(".difficulty");
+const gamesWon = document.querySelectorAll(".gamesWon")
 
+
+let level = "";
 let easy = 40;
 let easyGuesses = 8;
 let normal = 30;
@@ -43,6 +48,14 @@ rulesBtn.style.visibility = "hidden";
 settings.style.visibility = "hidden";
 keyboard.style.visibility = "hidden";
 
+updateStatistics();
+
+statisticBtn.addEventListener("click", function() {
+    statisticsContainer.classList.toggle("show-settings");
+})
+statisticsContainer.children[0].addEventListener("click", function() {
+    statisticsContainer.classList.toggle("show-settings");
+})
 
 startBtns[0].addEventListener("click", function() {
     // startGame(words);
@@ -63,14 +76,17 @@ startBtns[1].addEventListener("click", function(){
 
 difficulty[0].addEventListener("click", function(){
     toggleDifficulty();
+    level = "easy";
     startGame(theme, easy, easyGuesses);
 })
 difficulty[1].addEventListener("click", function(){
     toggleDifficulty();
+    level = "normal";
     startGame(theme, normal, normalGuesses);
 })
 difficulty[2].addEventListener("click", function(){
     toggleDifficulty();
+    level = "hard";
     startGame(theme, hard, hardGuesses);
 })
 
@@ -79,6 +95,9 @@ difficulty[2].addEventListener("click", function(){
 // startGame()
 
 function startGame(arrayTheme, gameLevel, numberIncorrect) {
+
+    updateStatistics();
+    
     //shows the game ui
     rulesBtn.style.visibility = "visible";
     keyboard.style.visibility = "visible";
@@ -300,14 +319,17 @@ function youLose(answer) {
 function gameIsOver() {
     gameOver = true;
     userInput.disabled = true;
+    checkLevelandUpdatePlayed(level)
 }
 
 //ends the game and brings up a you win message
 function youWin(answer) {
     gameIsOver();
+    checkLevelAndUpdateWins(level);
     winner.style.transform = "translateX(0)";
     answerH1.textContent = answer.join("");
     answerH1.style.transform = "translateX(0)";
+    
 }
 
 
@@ -360,4 +382,20 @@ function toggleDifficulty(){
 
 function setThreeColumns() {
     startContainer.classList.toggle("three-columns");
+}
+
+function checkLevelandUpdatePlayed(level) {
+    localStorage[level + "Played"] = parseInt(localStorage[level + "Played"]) + 1;
+}
+
+function checkLevelAndUpdateWins(level) {
+    console.log(level)
+    localStorage[level + "Wins"] = parseInt(localStorage[level + "Wins"]) + 1;
+}
+
+function updateStatistics() {
+    gamesWon[0].textContent = localStorage.easyWins;
+    gamesWon[1].textContent = localStorage.normalWins;
+    gamesWon[2].textContent = localStorage.hardWins;
+    statisticsContainer.children[3].textContent = localStorage.played;
 }
