@@ -19,6 +19,9 @@ a {
     margin-right: auto;
     text-decoration: none;
 }
+#header-container > a {
+    font-size: 16px;;
+}
 
 #settings-container > h2, #settings-container > p {
     font-family: 'Roboto', sans-serif;
@@ -61,7 +64,7 @@ header {
     visibility: none;
 }
 .flex-4 {
-    
+    color: white;
 }
 
 .heading {
@@ -322,6 +325,8 @@ input:checked + .slider:before {
 .stats-heading {
     grid-column: 1 / span 3;
     font-size: 60px;
+    transition-duration: 1s;
+    transition-property: all;
 }
 .stats-won {
     grid-column: 1 / span 3;
@@ -488,6 +493,13 @@ input:checked + .slider:before {
         font-size: 30px;
         width: 250px;
         height: 100px;
+    }
+    #statistics-container {
+        width: 400px;
+        height: 200px;
+    }
+    .stats-heading {
+        font-size: 30px;
     }
 }
 
