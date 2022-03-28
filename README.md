@@ -1,6 +1,8 @@
 # Wordle-Game
 General Assembly Wordle Project
 
+Play [here!](https://alexmercer6.github.io/Wordle-Game/)
+
 ## How To Play:
 - Choose game type
 - Choose level difficulty
