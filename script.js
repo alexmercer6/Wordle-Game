@@ -301,7 +301,7 @@ function checkIfWinner(num1, num2, answer) {
     }
 
     if(correctCount === 5) {
-        youWin(answer);
+        youWin(answer, level);
         return
     } else {
         correctCount = 0;
@@ -333,7 +333,7 @@ function gameIsOver() {
 }
 
 //ends the game and brings up a you win message
-function youWin(answer) {
+function youWin(answer, level) {
     gameIsOver();
     checkLevelAndUpdateWins(level);
     updateStatistics();
