@@ -319,7 +319,7 @@ function youLose(answer) {
 function gameIsOver() {
     gameOver = true;
     userInput.disabled = true;
-    checkLevelandUpdatePlayed(level)
+    updatePlayed();
 }
 
 //ends the game and brings up a you win message
@@ -384,8 +384,8 @@ function setThreeColumns() {
     startContainer.classList.toggle("three-columns");
 }
 
-function checkLevelandUpdatePlayed(level) {
-    localStorage[level + "Played"] = parseInt(localStorage[level + "Played"]) + 1;
+function updatePlayed() {
+    localStorage.played = parseInt(localStorage.played) + 1;
 }
 
 function checkLevelAndUpdateWins(level) {

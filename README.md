@@ -14,5 +14,4 @@ General Assembly Wordle Project
 - CSS
 
 ## Features to come:
-- Saving user score utilising localStorage
 - Ability to add your own words
