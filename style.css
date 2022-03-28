@@ -98,6 +98,14 @@ header {
     background-color: white;
     border: 1px solid grey;
 }
+.grey {
+    background-color: grey;
+}
+.key:hover {
+    transform: scale(1.1);
+    background-color: #ccc;
+    color: white;
+}
 .keyboard {
     display: grid;
     margin-top: 50px;
