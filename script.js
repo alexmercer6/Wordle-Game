@@ -25,11 +25,6 @@ const keys = document.querySelectorAll(".key");
 const difficulty = document.querySelectorAll(".difficulty");
 const gamesWon = document.querySelectorAll(".gamesWon")
 
-let currentEasyWins = localStorage.getItem("easyWins");
-let currentNormalWins = localStorage.getItem("normalWins");
-let currentHardWins = localStorage.getItem("hardWins");
-let currentPlayed = localStorage.getItem("played");
-
 
 
 let level = "";
@@ -53,6 +48,7 @@ rulesBtn.style.visibility = "hidden";
 settings.style.visibility = "hidden";
 keyboard.style.visibility = "hidden";
 
+setLocalStorageScores();
 updateStatistics();
 
 statisticBtn.addEventListener("click", function() {
@@ -409,4 +405,19 @@ function updateStatistics() {
     gamesWon[1].textContent = localStorage.normalWins;
     gamesWon[2].textContent = localStorage.hardWins;
     statisticsContainer.children[3].textContent = localStorage.played;
+}
+
+function setLocalStorageScores() {
+    if(!localStorage.easyWins) {
+        localStorage.easyWins = 0;
+    }
+    if(!localStorage.normalWins) {
+        localStorage.normalWins = 0;
+    }
+    if(!localStorage.hardWins) {
+        localStorage.hardWins = 0;
+    }
+    if(!localStorage.played) {
+        localStorage.played = 0;
+    }
 }
