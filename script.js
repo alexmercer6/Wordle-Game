@@ -232,7 +232,7 @@ function addGuessToSquares(answer) {
             
             }
         }
-        console.log(testArray + " green")
+       
 
         //checks to see if the letter matches anywhere in the test array (matching letters have been removed) but is not in the right spot
         //turns gold if true
@@ -245,7 +245,7 @@ function addGuessToSquares(answer) {
             //removes a matching letter from test array to prevent the wrong number of squares turning gold
             testArray.splice(indexGuessLetter, 1, " ")
         }
-        console.log(testArray + " yellow")
+        
         
         //counter to move to the next div
         index +=1;
@@ -396,7 +396,6 @@ function updatePlayed() {
 }
 
 function checkLevelAndUpdateWins(level) {
-    console.log(level)
     localStorage[level + "Wins"] = parseInt(localStorage[level + "Wins"]) + 1;
 }
 
