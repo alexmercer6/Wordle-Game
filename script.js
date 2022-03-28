@@ -336,6 +336,7 @@ function gameIsOver() {
 function youWin(answer) {
     gameIsOver();
     checkLevelAndUpdateWins(level);
+    updateStatistics();
     winner.style.transform = "translateX(0)";
     answerH1.textContent = answer.join("");
     answerH1.style.transform = "translateX(0)";
